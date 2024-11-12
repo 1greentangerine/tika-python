@@ -592,10 +592,6 @@ def checkTikaServer(scheme="http", serverHost=ServerHost, port=Port, tikaServerJ
             if not os.path.isfile(jarPath) and urlp.scheme != '':
                 getRemoteJar(tikaServerJar, jarPath)
 
-            if not checkJarSig(tikaServerJar, jarPath):
-                os.remove(jarPath)
-                tikaServerJar = getRemoteJar(tikaServerJar, jarPath)
-
             status = startServer(jarPath, TikaJava, TikaJavaArgs, serverHost, port, classpath, config_path)
             if not status:
                 log.error("Failed to receive startup confirmation from startServer.")
